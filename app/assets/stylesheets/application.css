@@ -133,12 +133,18 @@ input[type="checkbox"] {
 }
 
 .titulo-empresas{
-  background-color: #004080;
-  font-family: "Segoe UI", sans-serif;
   display: flex;
-  align-items: row;
-  flex: 0 0 calc(33.333% - 10px);
-  border: 15px;
-  padding: 10px;
+  justify-content: center;
+  font-family: "Segoe UI", sans-serif;
+  padding: 0.7rem 1rem;
+  font-size: 3rem;
+  border: 1px solid #b3d1ff;
+  border-radius: 8px;
+  background-color: #ffffff;
+  color: #003366;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
 
+.integration-note-label{
+  padding: 5%;
 }

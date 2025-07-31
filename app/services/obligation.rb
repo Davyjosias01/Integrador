@@ -20,7 +20,7 @@ class Obligation
           obligation: filter_parameters[:obligation],
           date_start: filter_parameters[:date_start],
           date_end: filter_parameters[:date_end],
-          fields: filter_parameters[:fields],
+          fields: "cnpj,#{filter_parameters[:fields]}",
           integrated_at: filter_parameters[:integrated_at],
           obligation_finished: filter_parameters[:obligation_finished],
           has_procuration: filter_parameters[:has_procuration]
@@ -30,12 +30,27 @@ class Obligation
     rescue => e
       Rails.logger.error("[Obligation#get_obligation] Error: #{e.class} - #{e.message}")
       OpenStruct.new(success?: false, error: e.message)
+      
     end
   end
 
-  def integrate_obligation #TODO
-    begin 
-    rescue 
+  def integrate_obligation(params_hash)
+    filter_parameters = filtered_and_cast_params(params_hash)
+    puts "parametros passados: #{filter_parameters}"
+    begin
+      self.class.post(
+        '/integration/v1/companies/set_as_integrated', headers: @headers,
+        query:{
+          obligation: filter_parameters[:obligation],
+          date_start: filter_parameters[:date_start],
+          date_end: filter_parameters[:date_end],
+          cnpj: filter_parameters[:cnpj],
+          note: filter_parameters[:note]
+        }    
+      )
+    rescue => e
+      Rails.logger.error("[Obligation#integrate_obligation] Error: #{e.class} - #{e.message}")
+      OpenStruct.new(success?: false, error: e.message)
     end
   end
 
