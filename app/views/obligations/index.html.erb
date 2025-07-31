@@ -1,0 +1,62 @@
+<%= form_with url: obligations_path, method: :get, local: true, html: {class: "custom-form"} do |form| %>
+    <h1>Tela de Busca de empresas por obrigações!</h1>
+    <div class="form-group">
+        <%= form.label :date_start, class: "form-label" %>&emsp;
+        <%= form.date_field :date_start, value: params[:date_start].presence || "", class: "form-control" %>
+    </div>
+    <div class="form-group">
+        <%= form.label :date_end, class: "form-label" %>&emsp;
+        <%= form.date_field :date_end, value: params[:date_end], class: "form-control" %>
+    </div>
+    <div class="form-group">
+        <%= form.label :obligation, class: "form-label" %>&emsp;
+        <%= form.text_field :obligation, value: params[:obligation], class: "form-control" %>
+    </div>
+    <div class="form-group">
+        <%= form.label :fields, class: "form-label" %>&emsp;
+        <%= form.text_field :fields, value: params[:fields], class: "form-control" %>
+    </div>
+
+    <div class="form-control checkbox-inline">
+        <label class="checkbox-label">
+            <%= form.label :integrated_at, class: "form-label" %>&emsp;
+            <%= form.check_box :integrated_at, { checked: params[:integrated_at] == "1" }, "1", "0" %>
+        </label>
+        <label class="checkbox-label">
+            <%= form.label :obligation_finished, class: "form-label" %>&emsp;
+            <%= form.check_box :obligation_finished, { checked: params[:obligation_finished] == "1" }, "1", "0"%>
+        </label>
+        <label class="checkbox-label">
+            <%= form.label :has_procuration, class: "form-label" %>&emsp;
+            <%= form.check_box :has_procuration, { checked: params[:has_procuration] == "1" }, "1", "0" %>
+        </label>
+    </div>
+
+    <%= form.submit "Buscar", class: "submit-button" %>
+<% end %>
+
+<% if @companies.present? %>
+    <h1 class="titulo-empresas">Empresas no request: <%= @companies.count%></h1>
+    <div class="company-integration">
+        <% @companies.each do |company|%>
+            <div class="apresentation-container">
+
+                <%= form_with url: obligations_path, method: :post, local: true do |form| %>
+            
+                    <% company.each do |campo, valor|%>
+                        <div class="">
+                            <p><%= campo%>: <%= valor%></p>
+                            <%= hidden_field_tag  "company[#{campo}]", valor %>
+                        </div>
+                    <% end %>
+                    <%= hidden_field_tag :date_start, params[:date_start]%>
+                    <%= hidden_field_tag :date_end, params[:date_end]%>
+                    <%= hidden_field_tag :obligation, params[:obligation]%>
+
+                    <%= form.submit "Integrar", class: "submit-button"%>
+                <% end %>
+            </div>
+        <% end %>
+
+    </div>
+<% end %>

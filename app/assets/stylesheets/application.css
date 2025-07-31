@@ -1,0 +1,144 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+/* Container principal */
+.custom-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #f0f4f9;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* Grupo de campos */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Labels */
+.form-label {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #004080;
+}
+
+/* Campos de input padrão */
+.form-control {
+  padding: 0.7rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #b3d1ff;
+  border-radius: 8px;
+  background-color: #ffffff;
+  color: #003366;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-control:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+  outline: none;
+}
+
+/* Grupo específico para checkboxes em linha */
+.form-control.checkbox-inline {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  gap: 2rem;
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+/* Label dos checkboxes */
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.1rem;
+  padding: 20px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #004080;
+}
+
+/* Checkbox estilizado */
+input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #007bff;
+  margin: 0;
+  cursor: pointer;
+}
+
+/* Botão submit */
+.submit-button {
+  padding: 0.75rem 1.5rem;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  font-weight: bold;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  align-self: flex-start;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+  transform: scale(1.02);
+}
+
+.submit-button:active {
+  background-color: #004080;
+  transform: scale(0.98);
+}
+
+.apresentation-container{
+  padding: 0.75rem 1.5rem;
+  border-color: black;
+  background-color: #f0f4f9;
+  max-width: 400px;
+  border-radius: 8px;
+  margin: 16px;
+  flex: 0 0 calc(33.333% - 10px);
+}
+
+.company-integration{
+  display: flex;
+  align-items: row;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.titulo-empresas{
+  background-color: #004080;
+  font-family: "Segoe UI", sans-serif;
+  display: flex;
+  align-items: row;
+  flex: 0 0 calc(33.333% - 10px);
+  border: 15px;
+  padding: 10px;
+
+}
