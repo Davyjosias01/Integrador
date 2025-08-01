@@ -28,7 +28,7 @@
         </label>
         <label class="checkbox-label">
             <%= form.label :has_procuration, class: "form-label" %>&emsp;
-            <%= form.check_box :has_procuration, { checked: params[:has_procuration] == "1" }, "1", "0" %>
+            <%= form.check_box :has_procuration, { checked: true }, "1", "0" %>
         </label>
     </div>
 
@@ -52,10 +52,7 @@
                     <%= hidden_field_tag :date_start, params[:date_start]%>
                     <%= hidden_field_tag :date_end, params[:date_end]%>
                     <%= hidden_field_tag :obligation, params[:obligation]%>
-                    <%= hidden_field_tag :cnpj, company["cnpj"] %>
-                    
-                    <div>oe: <%= company["cnpj"]%></div>
-
+                                        
                     <div class="integration-note-label">
                         <%= form.label :note, class: "form-label" %>&emsp;
                         <%= form.text_field :note, placeholder: "Nota de integração:", value: params[:note], class: "form-control" %>

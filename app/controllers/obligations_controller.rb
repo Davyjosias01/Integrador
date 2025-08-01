@@ -25,7 +25,7 @@ class ObligationsController < ApplicationController
   def integrar
     permitted = params.permit(
       :date_start, :date_end, :obligation, :note,
-      :commit, :cnpj
+      :commit, company:[:cnpj]
     )
     
     obligation = Obligation.new(ENV['RAZONET_TOKEN'])
@@ -42,7 +42,9 @@ class ObligationsController < ApplicationController
 
     rescue => e
       puts "Ocorreu um erro na integração da obrigação: #{e.message}"
+    
+    ensure
+      render :index
     end
-    render :index
   end
 end

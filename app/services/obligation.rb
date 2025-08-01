@@ -37,6 +37,7 @@ class Obligation
   def integrate_obligation(params_hash)
     filter_parameters = filtered_and_cast_params(params_hash)
     puts "parametros passados: #{filter_parameters}"
+    puts "cnpj: #{filter_parameters.dig(:company, "cnpj")}"
     begin
       self.class.post(
         '/integration/v1/companies/set_as_integrated', headers: @headers,
@@ -44,7 +45,7 @@ class Obligation
           obligation: filter_parameters[:obligation],
           date_start: filter_parameters[:date_start],
           date_end: filter_parameters[:date_end],
-          cnpj: filter_parameters[:cnpj],
+          cnpj: filter_parameters.dig(:company, "cnpj"),
           note: filter_parameters[:note]
         }    
       )
